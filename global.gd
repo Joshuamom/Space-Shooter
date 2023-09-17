@@ -1,6 +1,10 @@
 extends Node
 
 
-func _process(delta):
+func _ready():
+	randomize()
+
+
+func _process(_delta):
 	if Input.is_action_pressed("menu"):
 		get_tree().quit()
