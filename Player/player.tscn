@@ -5,11 +5,12 @@
 [ext_resource type="Texture2D" uid="uid://bdj6vhfggtebn" path="res://assets/Player.png" id="3_ja4qd"]
 
 [node name="player" type="CharacterBody2D"]
-position = Vector2(512, 300)
+position = Vector2(570, 324)
 script = ExtResource("1_jji2o")
 metadata/_edit_group_ = true
 
 [node name="Exhaust" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(0, 50)
 texture = ExtResource("2_fplwe")
 
@@ -18,3 +19,10 @@ texture = ExtResource("3_ja4qd")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(5, -25.2, 5, -22.5, 28.3, 17, 27.2, 19, 25.9, 19, 17.9, 28, 13.6, 28, -0.700001, 21.7, -19, 29, -19, 25.9, -28, 17.9, -28, 14.4, -3, -25.6, -3, -29.2)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+polygon = PackedVector2Array(0, -34, -32, 18, -18, 32, -1, 26, 16, 33, 34, 19)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
