@@ -1,19 +1,20 @@
 [gd_scene load_steps=4 format=3 uid="uid://d1d2utc0ptlp8"]
 
 [ext_resource type="Script" path="res://Enemy/Enemy.gd" id="1_ntnbr"]
-[ext_resource type="Texture2D" uid="uid://dexqdxchv8uda" path="res://assets/Enemy.png" id="2_i8u0x"]
+[ext_resource type="Texture2D" uid="uid://cksanokom72cd" path="res://assets/Enemy.png.PNG" id="2_4dd27"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dkwle"]
-radius = 40.0
+radius = 46.97
 
 [node name="Enemy" type="CharacterBody2D"]
 script = ExtResource("1_ntnbr")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_i8u0x")
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_4dd27")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-10, -25.9, -4, -20.9, -4, -16.4, 0.700001, -20.4, 3, -19.3, 3, -18, 4, -17.2, 4, -20.8, 11.2, -28, 20.8, -28, 28, -20.8, 28, -11.2, 20.8, -4, 16.4, -4, 20.4, 0.700001, 19.3, 3, 18, 3, 17.2, 4, 20.8, 4, 28, 11.2, 28, 22, 25.9, 22, 20.9, 28, 10, 28, 10, 25.9, 4, 20.9, 4, 16.4, -0.700001, 20.4, -3, 19.3, -3, 18, -4, 17.2, -4, 20.8, -11.2, 28, -20.7, 28, -27, 23, -27, 20, -28.3, 10, -25.9, 10, -20.9, 4, -16.4, 4, -20.4, -0.700001, -19.3, -3, -18, -3, -17.2, -4, -20.8, -4, -28, -11.2, -28, -20.9, -22, -25.9, -22, -28, -10, -28)
+polygon = PackedVector2Array(-1, -21, -6, -20, -10, -18, -14, -13, -16, -11, -17, -6, -19, -4, -28, 4, -38, 12, -35, 17, -36, 19, -32, 27, -24, 30, -19, 29, -19, 25, -8, 27, -9, 30, -5, 33, 5, 34, 12, 32, 13, 29, 11, 27, 19, 27, 19, 31, 27, 30, 33, 27, 40, 21, 36, 20, 40, 17, 19, -7, 8, -20)
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0

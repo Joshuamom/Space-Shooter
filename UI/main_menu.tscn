@@ -1,0 +1,65 @@
+[gd_scene load_steps=4 format=3 uid="uid://bfbbvo55o1rtl"]
+
+[ext_resource type="FontFile" uid="uid://dgj6qolq55hda" path="res://assets/Hyperspace Bold.otf" id="1_h5spj"]
+[ext_resource type="Script" path="res://UI/main_menu.gd" id="1_o3b8i"]
+[ext_resource type="FontFile" uid="uid://dofihoy75xned" path="res://assets/Hyperspace Bold Italic.otf" id="2_jkwfb"]
+
+[node name="Main_Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_o3b8i")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -248.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_h5spj")
+theme_override_font_sizes/font_size = 50
+text = " Comet Frontier!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Play" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -22.5
+offset_right = 100.0
+offset_bottom = 22.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_jkwfb")
+theme_override_font_sizes/font_size = 20
+text = "Start journey"
+
+[node name="Quit" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = 40.0
+offset_right = 100.0
+offset_bottom = 85.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("2_jkwfb")
+theme_override_font_sizes/font_size = 20
+text = "Quit"
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

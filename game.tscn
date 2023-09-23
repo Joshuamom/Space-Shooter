@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://sphin7ikejnt"]
+[gd_scene load_steps=9 format=3 uid="uid://sphin7ikejnt"]
 
 [ext_resource type="PackedScene" uid="uid://cdctd6bbna7k8" path="res://Player/player.tscn" id="1_mlj1t"]
 [ext_resource type="PackedScene" uid="uid://v6jrarrftptj" path="res://asteroid/asteroid.tscn" id="2_5f5j4"]
 [ext_resource type="Script" path="res://Player/player_container.gd" id="2_wt7c0"]
 [ext_resource type="PackedScene" uid="uid://d1d2utc0ptlp8" path="res://Enemy/enemy.tscn" id="3_jllux"]
+[ext_resource type="FontFile" uid="uid://dgj6qolq55hda" path="res://assets/Hyperspace Bold.otf" id="5_3owih"]
+[ext_resource type="Script" path="res://UI/HUD.gd" id="5_vl363"]
+[ext_resource type="Script" path="res://UI/pause_menu.gd" id="7_xovms"]
+[ext_resource type="FontFile" uid="uid://dofihoy75xned" path="res://assets/Hyperspace Bold Italic.otf" id="8_2qs3o"]
 
 [node name="game" type="Node2D"]
 
@@ -14,6 +18,10 @@ position = Vector2(100, 100)
 
 [node name="asteroid2" parent="asteroid_container" instance=ExtResource("2_5f5j4")]
 position = Vector2(900, 600)
+
+[node name="asteroid3" parent="asteroid_container" instance=ExtResource("2_5f5j4")]
+position = Vector2(0, 300)
+rotation = -4.02822
 
 [node name="Effects" type="Node2D" parent="."]
 
@@ -26,3 +34,125 @@ script = ExtResource("2_wt7c0")
 
 [node name="Enemy" parent="Enemy_Container" instance=ExtResource("3_jllux")]
 position = Vector2(400, 100)
+
+[node name="Enemy2" parent="Enemy_Container" instance=ExtResource("3_jllux")]
+position = Vector2(300, 550)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="HUD" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_vl363")
+
+[node name="Score" type="Label" parent="UI/HUD"]
+layout_mode = 1
+offset_left = 10.0
+offset_right = 210.0
+offset_bottom = 40.0
+theme_override_fonts/font = ExtResource("5_3owih")
+theme_override_font_sizes/font_size = 20
+text = "Score:"
+vertical_alignment = 1
+
+[node name="Time" type="Label" parent="UI/HUD"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -210.0
+offset_right = -10.0
+offset_bottom = 40.0
+grow_horizontal = 0
+theme_override_fonts/font = ExtResource("5_3owih")
+theme_override_font_sizes/font_size = 20
+text = "Time:"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Indicator_Container" type="Control" parent="UI/HUD"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Timer" type="Timer" parent="UI/HUD"]
+autostart = true
+
+[node name="pause_menu" type="Control" parent="UI"]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("7_xovms")
+
+[node name="ColorRect" type="ColorRect" parent="UI/pause_menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.235294)
+
+[node name="Label" type="Label" parent="UI/pause_menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -248.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("8_2qs3o")
+theme_override_font_sizes/font_size = 50
+text = "Pause Menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="restart" type="Button" parent="UI/pause_menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -188.0
+offset_top = -23.0
+offset_right = 188.0
+offset_bottom = 23.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("8_2qs3o")
+theme_override_font_sizes/font_size = 30
+text = "Take it from the top!"
+
+[node name="quit" type="Button" parent="UI/pause_menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -188.0
+offset_top = 36.0
+offset_right = 188.0
+offset_bottom = 82.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("8_2qs3o")
+theme_override_font_sizes/font_size = 30
+text = "quit"
+
+[connection signal="timeout" from="UI/HUD/Timer" to="UI/HUD" method="_on_timer_timeout"]
+[connection signal="pressed" from="UI/pause_menu/restart" to="UI/pause_menu" method="_on_restart_pressed"]
+[connection signal="pressed" from="UI/pause_menu/quit" to="UI/pause_menu" method="_on_quit_pressed"]

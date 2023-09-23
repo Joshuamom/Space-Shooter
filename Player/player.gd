@@ -24,8 +24,8 @@ func get_input():
 func _physics_process(_delta):
 	velocity += get_input()*speed
 	velocity = velocity.normalized() * clamp(velocity.length(), 0, Max_s)
-	position.x = wrapf(position.x, 0.0, 1152.0)
-	position.y = wrapf(position.y, 0.0, 648.0)
+	position.x = wrapf(position.x, 0.0, Global.VP.x)
+	position.y = wrapf(position.y, 0.0, Global.VP.y)
 	move_and_slide()
 	
 	if Input.is_action_just_pressed("Shoot"):
@@ -47,6 +47,7 @@ func damage(d):
 			explosion.global_position = global_position
 			hide()
 			await explosion.animation_finished
+		Global.Update_Lives(-1)
 		queue_free()
 		
 
