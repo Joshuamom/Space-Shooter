@@ -1,19 +1,21 @@
 [gd_scene load_steps=4 format=3 uid="uid://s38c21l0k6wp"]
 
 [ext_resource type="Script" path="res://Player/bullet.gd" id="1_le52x"]
-[ext_resource type="Texture2D" uid="uid://ij1ufvi3pf7l" path="res://assets/Bullet.png" id="2_k2r3g"]
+[ext_resource type="Texture2D" uid="uid://dfnvl80f610m0" path="res://assets/laserBlue07.png" id="2_djpe0"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_3rpnx"]
-radius = 12.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_474sv"]
+radius = 4.16667
+height = 26.6667
 
 [node name="bullet" type="Area2D"]
 script = ExtResource("1_le52x")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_k2r3g")
+texture = ExtResource("2_djpe0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_3rpnx")
+scale = Vector2(1.2, 1.2)
+shape = SubResource("CapsuleShape2D_474sv")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0

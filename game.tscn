@@ -1,15 +1,33 @@
-[gd_scene load_steps=9 format=3 uid="uid://sphin7ikejnt"]
+[gd_scene load_steps=16 format=3 uid="uid://sphin7ikejnt"]
 
 [ext_resource type="PackedScene" uid="uid://cdctd6bbna7k8" path="res://Player/player.tscn" id="1_mlj1t"]
+[ext_resource type="Texture2D" uid="uid://cu5u4fmx1cx1l" path="res://assets/Bg.png.PNG" id="1_sgxhi"]
 [ext_resource type="PackedScene" uid="uid://v6jrarrftptj" path="res://asteroid/asteroid.tscn" id="2_5f5j4"]
 [ext_resource type="Script" path="res://Player/player_container.gd" id="2_wt7c0"]
+[ext_resource type="Script" path="res://assets/TextureRect.gd" id="2_x4oah"]
 [ext_resource type="PackedScene" uid="uid://d1d2utc0ptlp8" path="res://Enemy/enemy.tscn" id="3_jllux"]
 [ext_resource type="FontFile" uid="uid://dgj6qolq55hda" path="res://assets/Hyperspace Bold.otf" id="5_3owih"]
 [ext_resource type="Script" path="res://UI/HUD.gd" id="5_vl363"]
 [ext_resource type="Script" path="res://UI/pause_menu.gd" id="7_xovms"]
 [ext_resource type="FontFile" uid="uid://dofihoy75xned" path="res://assets/Hyperspace Bold Italic.otf" id="8_2qs3o"]
+[ext_resource type="AudioStream" uid="uid://d4kxmuartqd4l" path="res://assets/music.mp3" id="11_4mf1g"]
+[ext_resource type="Script" path="res://Effects/music.gd" id="12_2pyem"]
+[ext_resource type="AudioStream" uid="uid://5qen117isptr" path="res://assets/laser.wav" id="13_ox5y4"]
+[ext_resource type="AudioStream" uid="uid://cwpmoig4sf4dt" path="res://assets/alien.wav" id="14_r2ges"]
+[ext_resource type="AudioStream" uid="uid://cjjytwkbq1k3s" path="res://assets/explode.wav" id="15_xic31"]
 
 [node name="game" type="Node2D"]
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="Node2D"]
+clip_contents = true
+offset_right = 2869.0
+offset_bottom = 1660.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("1_sgxhi")
+script = ExtResource("2_x4oah")
 
 [node name="asteroid_container" type="Node2D" parent="."]
 
@@ -36,7 +54,7 @@ script = ExtResource("2_wt7c0")
 position = Vector2(400, 100)
 
 [node name="Enemy2" parent="Enemy_Container" instance=ExtResource("3_jllux")]
-position = Vector2(300, 550)
+position = Vector2(300, 600)
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -153,6 +171,25 @@ theme_override_fonts/font = ExtResource("8_2qs3o")
 theme_override_font_sizes/font_size = 30
 text = "quit"
 
+[node name="music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_4mf1g")
+volume_db = -10.331
+autoplay = true
+script = ExtResource("12_2pyem")
+
+[node name="bullet" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_ox5y4")
+volume_db = -19.974
+
+[node name="alien" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("14_r2ges")
+volume_db = -11.709
+
+[node name="explode" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_xic31")
+volume_db = -11.12
+
 [connection signal="timeout" from="UI/HUD/Timer" to="UI/HUD" method="_on_timer_timeout"]
 [connection signal="pressed" from="UI/pause_menu/restart" to="UI/pause_menu" method="_on_restart_pressed"]
 [connection signal="pressed" from="UI/pause_menu/quit" to="UI/pause_menu" method="_on_quit_pressed"]
+[connection signal="finished" from="music" to="music" method="_on_finished"]

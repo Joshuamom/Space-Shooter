@@ -5,6 +5,7 @@ var Max_s = 400
 var rotate_s = 0.08
 var nose = Vector2(0,-60)
 var Bullet = load("res://Player/bullet.tscn")
+var bullet_sound = null
 var Effects = null
 var Explosion = load("res://Effects/explosion.tscn")
 var Health = 10
@@ -28,6 +29,7 @@ func _physics_process(_delta):
 	position.y = wrapf(position.y, 0.0, Global.VP.y)
 	move_and_slide()
 	
+	
 	if Input.is_action_just_pressed("Shoot"):
 		var bullet = Bullet.instantiate()
 		bullet.position = position + nose.rotated(rotation)
@@ -35,6 +37,9 @@ func _physics_process(_delta):
 		
 		var Effects = get_node_or_null("/root/game/Effects")
 		if Effects != null:
+			bullet_sound = get_node_or_null("/root/game/bullet")
+			if bullet_sound != null:
+				bullet_sound.play()
 			Effects.add_child(bullet)
 			
 func damage(d):
@@ -56,3 +61,7 @@ func _on_area_2d_body_entered(body):
 	if body.name != "player":
 		damage(100)
 	
+
+
+func _on_sheild_area_entered(area):
+	pass # Replace with function body.

@@ -10,7 +10,7 @@ script = ExtResource("1_bhp3e")
 texture = ExtResource("2_41h0p")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(12.4, 0.5, 11.3, 3, 9.7, 3, -0.6, 12.4, -3, 11.3, -3, 9.9, -12, 1.9, -12, -1.9, -3, -9.9, -3, -11.3, -0.5, -12.4)
+polygon = PackedVector2Array(9, -1, 9, 1, 7, 3, 2, 9, -1, 10, -3, 7, -7, 3, -9, 0, -4, -3, 0, -10, 3, -6)
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 3.0

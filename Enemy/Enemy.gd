@@ -1,8 +1,9 @@
 extends CharacterBody2D
 
 var Bullet = load("res://Enemy/enemy_bullet.tscn")
-var Health = 7
-var y_positions = [100,150,200,500,550]
+var Health = 10
+var x_position = [990, 1121, 200, 600]
+var y_positions = [100,120,200,500,560]
 var initial_position = Vector2.ZERO
 var direction = Vector2(1.5, 0)
 var wobble = 35.0
@@ -25,6 +26,9 @@ func _on_timer_timeout():
 	var player = get_node_or_null("/root/game/player_container/player")
 	var Effects = get_node_or_null("/root/game/Effects")
 	if player != null and Effects != null:
+		var enemy_sound = get_node_or_null("/root/game/alien")
+		if enemy_sound != null:
+			enemy_sound.play()
 		var bullet = Bullet.instantiate()
 		var d = global_position.angle_to_point(player.global_position) + PI/2
 		bullet.rotation = d
