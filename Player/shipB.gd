@@ -1,14 +1,14 @@
 extends CharacterBody2D
 
-var speed = 5
+var speed = 2
 var Max_s = 400
-var rotate_s = 0.08
+var rotate_s = 0.04
 var nose = Vector2(0,-60)
 var Bullet = load("res://Player/bullet.tscn")
 var bullet_sound = null
 var Effects = null
 var Explosion = load("res://Effects/explosion.tscn")
-var Health = 10
+var Health = 30
 
 func get_input():
 	var to_return = Vector2.ZERO
@@ -61,5 +61,6 @@ func _on_area_2d_body_entered(body):
 	if body.name != "player":
 		damage(100)
 	
+
 
 

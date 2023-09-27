@@ -1,14 +1,15 @@
 extends CharacterBody2D
 
-var speed = 5
-var Max_s = 400
-var rotate_s = 0.08
+var speed = 10
+var Max_s = 700
+var rotate_s = 0.1
 var nose = Vector2(0,-60)
 var Bullet = load("res://Player/bullet.tscn")
+var Bomb = load("res://Player/bomb.tscn")
 var bullet_sound = null
 var Effects = null
 var Explosion = load("res://Effects/explosion.tscn")
-var Health = 10
+var Health = 8
 
 func get_input():
 	var to_return = Vector2.ZERO
@@ -34,13 +35,20 @@ func _physics_process(_delta):
 		var bullet = Bullet.instantiate()
 		bullet.position = position + nose.rotated(rotation)
 		bullet.rotation = rotation
-		
 		var Effects = get_node_or_null("/root/game/Effects")
 		if Effects != null:
 			bullet_sound = get_node_or_null("/root/game/bullet")
 			if bullet_sound != null:
 				bullet_sound.play()
 			Effects.add_child(bullet)
+			
+	if Input.is_action_just_pressed("bomb"):
+		var bomb = Bomb.instantiate()
+		bomb.position = position + nose.rotated(rotation)
+		bomb.rotation = rotation
+		var Effects = get_node_or_null("/root/game/Effects")
+		if Effects != null:
+			Effects.add_child(bomb)
 			
 func damage(d):
 	Health -= d
@@ -60,6 +68,4 @@ func damage(d):
 func _on_area_2d_body_entered(body):
 	if body.name != "player":
 		damage(100)
-	
-
 

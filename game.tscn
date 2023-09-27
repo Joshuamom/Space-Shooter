@@ -1,13 +1,13 @@
 [gd_scene load_steps=16 format=3 uid="uid://sphin7ikejnt"]
 
-[ext_resource type="PackedScene" uid="uid://cdctd6bbna7k8" path="res://Player/player.tscn" id="1_mlj1t"]
 [ext_resource type="Texture2D" uid="uid://cu5u4fmx1cx1l" path="res://assets/Bg.png.PNG" id="1_sgxhi"]
+[ext_resource type="Script" path="res://UI/main_menu.gd" id="1_vmwrl"]
 [ext_resource type="PackedScene" uid="uid://v6jrarrftptj" path="res://asteroid/asteroid.tscn" id="2_5f5j4"]
 [ext_resource type="Script" path="res://Player/player_container.gd" id="2_wt7c0"]
-[ext_resource type="Script" path="res://assets/TextureRect.gd" id="2_x4oah"]
 [ext_resource type="PackedScene" uid="uid://d1d2utc0ptlp8" path="res://Enemy/enemy.tscn" id="3_jllux"]
 [ext_resource type="FontFile" uid="uid://dgj6qolq55hda" path="res://assets/Hyperspace Bold.otf" id="5_3owih"]
 [ext_resource type="Script" path="res://UI/HUD.gd" id="5_vl363"]
+[ext_resource type="PackedScene" uid="uid://cwitbm6st2k8e" path="res://Enemy/angy.tscn" id="7_djlxf"]
 [ext_resource type="Script" path="res://UI/pause_menu.gd" id="7_xovms"]
 [ext_resource type="FontFile" uid="uid://dofihoy75xned" path="res://assets/Hyperspace Bold Italic.otf" id="8_2qs3o"]
 [ext_resource type="AudioStream" uid="uid://d4kxmuartqd4l" path="res://assets/music.mp3" id="11_4mf1g"]
@@ -18,16 +18,35 @@
 
 [node name="game" type="Node2D"]
 
-[node name="Node2D" type="Node2D" parent="."]
-
-[node name="TextureRect" type="TextureRect" parent="Node2D"]
-clip_contents = true
-offset_right = 2869.0
-offset_bottom = 1660.0
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+script = ExtResource("1_vmwrl")
+
+[node name="CanvasGroup" type="CanvasGroup" parent="Control"]
+clip_children = 1
+use_parent_material = true
+use_mipmaps = true
+
+[node name="TextureRect" type="TextureRect" parent="Control"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -9.0
+offset_right = 1169.0
+offset_bottom = 649.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("1_sgxhi")
-script = ExtResource("2_x4oah")
+expand_mode = 5
 
 [node name="asteroid_container" type="Node2D" parent="."]
 
@@ -46,8 +65,6 @@ rotation = -4.02822
 [node name="player_container" type="Node2D" parent="."]
 script = ExtResource("2_wt7c0")
 
-[node name="player" parent="player_container" instance=ExtResource("1_mlj1t")]
-
 [node name="Enemy_Container" type="Node2D" parent="."]
 
 [node name="Enemy" parent="Enemy_Container" instance=ExtResource("3_jllux")]
@@ -55,6 +72,14 @@ position = Vector2(400, 100)
 
 [node name="Enemy2" parent="Enemy_Container" instance=ExtResource("3_jllux")]
 position = Vector2(300, 600)
+
+[node name="angy" parent="Enemy_Container" instance=ExtResource("7_djlxf")]
+position = Vector2(832, 400)
+
+[node name="angy2" parent="Enemy_Container" instance=ExtResource("7_djlxf")]
+position = Vector2(200, 400)
+
+[node name="upgrade container" type="Node2D" parent="."]
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -97,6 +122,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 16.0
+offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -106,6 +133,7 @@ autostart = true
 [node name="pause_menu" type="Control" parent="UI"]
 process_mode = 3
 visible = false
+clip_contents = true
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

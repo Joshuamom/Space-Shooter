@@ -1,7 +1,6 @@
 extends Control
 var VP = Vector2.ZERO
 
-
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	randomize()
@@ -15,7 +14,7 @@ func _physics_process(_delta):
 	
 
 func _on_play_pressed():
-	get_tree().change_scene_to_file("res://UI/selector.tscn")
+	get_tree().change_scene_to_file("res://game.tscn")
 
 func _on_quit_pressed():
 	get_tree().quit()

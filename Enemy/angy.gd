@@ -1,12 +1,13 @@
 extends CharacterBody2D
 
+
 var Bullet = load("res://Enemy/enemy_bullet.tscn")
-var Health = 10
+var Health = 20
 var x_position = [990, 1121, 200, 600]
 var y_positions = [100,120,200,500,560]
 var initial_position = Vector2.ZERO
-var direction = Vector2(1.5, 0)
-var wobble = 35.0
+var direction = Vector2(1, 0)
+var wobble = 100.0
 
 
 func _ready():
@@ -38,10 +39,10 @@ func _on_timer_timeout():
 func damage(d):
 	Health -= d
 	if Health <= 0:
-		Global.Update_Score(600)
+		Global.Update_Score(900)
 		queue_free()
 
 func _on_area_2d_body_entered(body):
 	if body.name == "player":
-		damage(100)
+		damage(150)
 		body.damage(100)

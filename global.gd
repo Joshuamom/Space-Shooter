@@ -4,40 +4,7 @@ var VP = Vector2.ZERO
 var Score = 0
 var Lives = 0
 var time = 0
-var level = -1
-
-var levels = [
-	{
-		"title" : "level 1 ",
-		"subtitle" : "detroy all the astroids!! OvO",
-		"asteroids" :[Vector2(100,100),Vector2(900,499)],
-		"enemies": [],
-		"timer": 100,
-		"asteroid_spawn": false,
-		"enemy_spawn": false
-	},
-	{
-		"title" : "level 2 ",
-		"subtitle" : "detroy all the astroids!! and a few friends",
-		"asteroids" :[Vector2(900,105),Vector2(900,499), Vector2(800,800)],
-		"enemies": [Vector2(160,250),Vector2(700,160)],
-		"timer": 80,
-		"asteroid_spawn": false,
-		"enemy_spawn": false
-	},
-	{
-		"title" : "level 3 ",
-		"subtitle" : "you know the drill!",
-		"asteroids" :[Vector2(700,105),Vector2(600,450), Vector2(750,800)],
-		"enemies": [Vector2(160,250)],
-		"timer": 80,
-		"asteroid_spawn": false,
-		"enemy_spawn": false
-	}
-	
-	
-	
-]
+var Player = null
 
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -73,10 +40,6 @@ func Update_Lives(l):
 	if Lives < 0:
 		get_tree().change_scene_to_file("res://UI/end_game.tscn")
 
-func new_level():
-	level += 1
-	if level > levels.size():
-		get_tree().change_scene_to_file("res://UI/end_game.tscn")
 		
 	
 func Update_Score(s):
@@ -95,11 +58,12 @@ func _resize():
 		hud.Update_Lives()
 
 func reset():
-	get_tree().paused = false
+	#get_tree().paused = false
 	Score = 0
-	Lives = 5
+	Lives = 3
 	time = 60
-	level = -1
-	for x in levels:
-		x ["asteroid_spawn" = false]
-		x ["enemy_spawn" = false]
+	#level = -1
+	#for x in levels:
+		#x ["asteroid_spawn"] = false
+		#x ["enemy_spawn"] = false
+	

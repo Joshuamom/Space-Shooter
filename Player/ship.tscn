@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://d32om1yxh5orb"]
+
+[ext_resource type="Script" path="res://Player/ship.gd" id="1_p8fyi"]
+[ext_resource type="Texture2D" uid="uid://d2ui0tx2wfoqx" path="res://assets/Exhaust.png" id="2_8tqhc"]
+[ext_resource type="Texture2D" uid="uid://qi76bjxmfi84" path="res://assets/playerShip3_green.png" id="3_bkglr"]
+
+[node name="player" type="CharacterBody2D"]
+position = Vector2(594, 325)
+script = ExtResource("1_p8fyi")
+metadata/_edit_group_ = true
+
+[node name="Exhaust" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, 50)
+texture = ExtResource("2_8tqhc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("3_bkglr")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+scale = Vector2(0.9, 0.9)
+polygon = PackedVector2Array(8, -35, 15.2, -21.5, 15.9, -21.5, 49, 16.6, 49, 31.5, 23.8, 31.5, 17.8, 37.5, -17.7, 37.5, -22.9, 31.5, -39.8, 31.5, -49, 32.5, -49, 16.4, -14, -23.2, -14, -25, -8, -36.1, -8, -37.5, 8, -37.5)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+scale = Vector2(0.9, 0.9)
+polygon = PackedVector2Array(6.66667, -41.1111, -7.77778, -41.1111, -12.2222, -38.8889, -16.6667, -23.3333, -51.1111, 14.4444, -52.2222, 35.5556, -41.1111, 34.4444, -24.4444, 35.5556, -18.8889, 40, 17.7778, 41.1111, 25.5556, 34.4444, 52.2222, 34.4444, 52.2222, 14.4444, 16.6667, -24.4444, 10, -36.6667)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

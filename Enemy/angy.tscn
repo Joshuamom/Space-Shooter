@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwitbm6st2k8e"]
+
+[ext_resource type="Texture2D" uid="uid://cl0kcspkw81ka" path="res://assets/angy.PNG" id="1_2nrkg"]
+[ext_resource type="Script" path="res://Enemy/angy.gd" id="1_pd8p7"]
+
+[node name="angy" type="CharacterBody2D"]
+collision_mask = 3
+safe_margin = 0.1
+script = ExtResource("1_pd8p7")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_2nrkg")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-12, -41.7, -12, -39.8, -10.2, -38, 9, -38, 9, -37.2, 18.5, -42, 24.5, -42, 28, -40.2, 28, -38.8, 32, -34.8, 32, -28.7, 30.5, -24.3, 37, -15.7, 37, -7, 35.3, -7, 18.3, 29, -11.3, 29, -16, 27.4, -16, 25.7, -35, 1, -37, -4.5, -27, -22.5, -27, -24.2, -30, -27.2, -30, -37, -27.7, -37, -23, -40.9, -23, -43.3)
+
+[node name="Timer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.5
+autostart = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

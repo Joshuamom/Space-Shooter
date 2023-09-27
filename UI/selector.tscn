@@ -1,0 +1,130 @@
+[gd_scene load_steps=8 format=3 uid="uid://dew0ywpresy08"]
+
+[ext_resource type="Script" path="res://UI/selector.gd" id="1_iamjk"]
+[ext_resource type="FontFile" uid="uid://dgj6qolq55hda" path="res://assets/Hyperspace Bold.otf" id="1_ismfq"]
+[ext_resource type="Texture2D" uid="uid://cu5u4fmx1cx1l" path="res://assets/Bg.png.PNG" id="2_26d1f"]
+[ext_resource type="Texture2D" uid="uid://c0wpfl5hdiutq" path="res://assets/Player.png.PNG" id="2_jijww"]
+[ext_resource type="Texture2D" uid="uid://qi76bjxmfi84" path="res://assets/playerShip3_green.png" id="3_pny44"]
+[ext_resource type="FontFile" uid="uid://dofihoy75xned" path="res://assets/Hyperspace Bold Italic.otf" id="4_0aarj"]
+[ext_resource type="Texture2D" uid="uid://r17xeavn4e0s" path="res://assets/playerShip2_orange.png" id="4_srhm3"]
+
+[node name="selector" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_iamjk")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 448.0
+offset_bottom = 226.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_26d1f")
+flip_h = true
+flip_v = true
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -248.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0.662745, 0.811765, 1)
+theme_override_colors/font_shadow_color = Color(0.470588, 0.886275, 0.776471, 1)
+theme_override_fonts/font = ExtResource("1_ismfq")
+theme_override_font_sizes/font_size = 70
+text = "choose your ship! OvO"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 415.0
+offset_right = 205.0
+offset_bottom = 448.0
+theme_override_colors/font_color = Color(0.215686, 0.564706, 0.760784, 1)
+theme_override_colors/font_shadow_color = Color(0.839216, 0.839216, 0.839216, 1)
+theme_override_fonts/font = ExtResource("4_0aarj")
+theme_override_font_sizes/font_size = 18
+text = "just a little guy"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="."]
+layout_mode = 0
+offset_left = 475.0
+offset_top = 422.0
+offset_right = 662.0
+offset_bottom = 455.0
+theme_override_colors/font_color = Color(0.215686, 0.564706, 0.760784, 1)
+theme_override_colors/font_shadow_color = Color(0.839216, 0.839216, 0.839216, 1)
+theme_override_fonts/font = ExtResource("4_0aarj")
+theme_override_font_sizes/font_size = 18
+text = "stellar 1123"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="."]
+layout_mode = 0
+offset_left = 954.0
+offset_top = 425.0
+offset_right = 1141.0
+offset_bottom = 458.0
+theme_override_colors/font_color = Color(0.215686, 0.564706, 0.760784, 1)
+theme_override_colors/font_shadow_color = Color(0.839216, 0.839216, 0.839216, 1)
+theme_override_fonts/font = ExtResource("4_0aarj")
+theme_override_font_sizes/font_size = 18
+text = "tank unit"
+horizontal_alignment = 1
+
+[node name="player" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -200.0
+offset_right = 200.0
+grow_vertical = 0
+texture_normal = ExtResource("2_jijww")
+stretch_mode = 3
+
+[node name="ship" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -200.0
+offset_right = 100.0
+grow_horizontal = 2
+grow_vertical = 0
+texture_normal = ExtResource("3_pny44")
+stretch_mode = 3
+
+[node name="shipB" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -200.0
+grow_horizontal = 0
+grow_vertical = 0
+texture_normal = ExtResource("4_srhm3")
+stretch_mode = 3
+
+[connection signal="pressed" from="player" to="." method="_on_player_pressed"]
+[connection signal="pressed" from="ship" to="." method="_on_ship_pressed"]
+[connection signal="pressed" from="shipB" to="." method="_on_ship_b_pressed"]
