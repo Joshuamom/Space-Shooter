@@ -80,5 +80,20 @@ theme_override_fonts/font = ExtResource("2_jkwfb")
 theme_override_font_sizes/font_size = 20
 text = "Quit"
 
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 718.0
+offset_top = 521.0
+offset_right = 1149.0
+offset_bottom = 637.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_h5spj")
+theme_override_font_sizes/font_size = 20
+text = "W = forward
+A = left turn
+D = Right turn
+space = shoot, C = bomb"
+horizontal_alignment = 1
+
 [connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
